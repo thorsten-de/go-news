@@ -1,0 +1,6 @@
+github.com/thorsten-de/go-news/domain v0.0.1 h1:3oo94IYmkTs6C72HBzGKROs39/6/tmGG4k0rirhI7CI=
+github.com/thorsten-de/go-news/domain v0.0.1/go.mod h1:tmjfhBhWv+s/v6yDt0BeE5eTBNASQVQPz0oey+vUQBU=
+go.etcd.io/bbolt v1.5.0 h1:S7GAl7Fxv12yohbwFfIbQCGDWbQbtDGPET4P/bD4lxU=
+go.etcd.io/bbolt v1.5.0/go.mod h1:mkltfYE5aUHQxUct9N9V+Kp7aSjFqjgrhcXIS70Lrdk=
+golang.org/x/sys v0.45.0 h1:dO4czNzziLiiXplLQgBCEpCvXQ3dnkn0SdaZSYdQ+FY=
+golang.org/x/sys v0.45.0/go.mod h1:4GL1E5IUh+htKOUEOaiffhrAeqysfVGipDYzABqnCmw=

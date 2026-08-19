@@ -9,5 +9,5 @@ type ArticleReader interface {
 // Storage persists and retrieves articles
 type Storage interface {
 	ArticleReader
-	AddAricles(articles []*Article) error
+	AddArticles(articles []*Article) error
 }
