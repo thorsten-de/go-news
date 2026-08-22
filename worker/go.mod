@@ -1,3 +1,3 @@
 module github.com/thorsten-de/go-news/worker
 
-go 1.26.6
+go 1.27.0

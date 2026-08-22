@@ -1,6 +1,6 @@
 module github.com/thorsten-de/go-news/storage
 
-go 1.26.6
+go 1.27.0
 
 require (
 	github.com/thorsten-de/go-news/domain v0.0.1
