@@ -10,7 +10,13 @@ import (
 )
 
 func main() {
-	// Open database access and defer closing when done
+	// Open database with read-only access and defer closing when done.
+	// - We enforce the principle of least privilege by opening the database
+	//   in read-only mode. This provides defense in depth against unauthorized
+	//   modifications to the database by the api.
+	// - It also improves concurrency, as BoltDB supports multiple readers acquiring
+	//   a shared lock on the database, allowing them to read simultaneously, while
+	//   write mode requires an exclusive lock.
 	store, err := storage.NewBoltStore("./articles.db", true)
 	if err != nil {
 		log.Fatalf("failed to initialize storage: %v", err)

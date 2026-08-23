@@ -21,7 +21,7 @@ type BoltStore struct {
 // NewBoltStore creates a new BoltStore instance with the specified database path and read-only mode.
 func NewBoltStore(dbPath string, readOnly bool) (*BoltStore, error) {
 	db, err := bbolt.Open(dbPath, 0600, &bbolt.Options{
-		Timeout:  1 * time.Second,
+		Timeout:  2 * time.Second,
 		ReadOnly: readOnly})
 	if err != nil {
 		return nil, fmt.Errorf("failed to open database: %w", err)
@@ -49,6 +49,7 @@ func (s *BoltStore) Close() error {
 func (s *BoltStore) AddArticles(articles []*domain.Article) error {
 	// Use an update transaction to ensure atomicity of the write operations.
 	return s.db.Update(func(tx *bbolt.Tx) error {
+		fmt.Println("Adding articles...")
 		bucket := tx.Bucket([]byte(articlesBucktName))
 		if bucket == nil {
 			return fmt.Errorf("articles bucket not found")
@@ -62,6 +63,8 @@ func (s *BoltStore) AddArticles(articles []*domain.Article) error {
 				return fmt.Errorf("failed to store article %q: %w", article.ID, err)
 			}
 		}
+
+		fmt.Println("Articles added successfully")
 		return nil
 	})
 }
