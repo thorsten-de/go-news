@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"slices"
@@ -46,7 +47,7 @@ func (s *BoltStore) Close() error {
 }
 
 // AddArticles adds a list of articles to the database.
-func (s *BoltStore) AddArticles(articles []*domain.Article) error {
+func (s *BoltStore) AddArticles(_ context.Context, articles []*domain.Article) error {
 	// Use an update transaction to ensure atomicity of the write operations.
 	return s.db.Update(func(tx *bbolt.Tx) error {
 		fmt.Println("Adding articles...")

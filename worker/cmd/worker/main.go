@@ -90,7 +90,7 @@ func fetchAndStore(ctx context.Context,
 			continue
 		}
 		// Use domain Storage interface to store articles
-		if err := store.AddArticles(feed.Articles); err != nil {
+		if err := store.AddArticles(ctx, feed.Articles); err != nil {
 			log.Printf("Error storing articles from %s: %v", url, err)
 			continue
 		}

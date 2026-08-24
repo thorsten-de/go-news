@@ -30,9 +30,13 @@ type mockStorage struct {
 
 func (m *mockStorage) GetRecent(n int) []*domain.Article          { return nil }
 func (m *mockStorage) GetByID(id string) (*domain.Article, error) { return nil, nil }
-func (m *mockStorage) AddArticles(articles []*domain.Article) error {
+func (m *mockStorage) AddArticles(ctx context.Context, articles []*domain.Article) error {
 	m.added = append(m.added, articles)
 	return m.err
+}
+
+func (m *mockStorage) Close() error {
+	return nil
 }
 
 func TestFetchAndStore_AllSuccess(t *testing.T) {

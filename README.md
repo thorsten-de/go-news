@@ -19,3 +19,10 @@ go run ./cmd/api
 
 > [!IMPORTANT] 
 > In the current state, these services cannot run at the same time. This is due to restrictions in the bbold store implementation that prevent opening the same file simultaneously.
+
+
+## Extending the storage module with a vector store
+
+In this example, we use
+- [Qdrant](https://qdrant.tech/) as a vector store within a docker container
+- Ollama as the local model provider, running locally on my machine. Alternatively, it could be run within a Docker container.
