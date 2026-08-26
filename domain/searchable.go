@@ -11,5 +11,5 @@ type SearchResult struct {
 // Searchable is an interface providing search functionality
 type Searchable interface {
 	// Search performs a search query and returns a slice of SearchResult
-	Search(ctx context.Context, query string) ([]SearchResult, error)
+	Search(ctx context.Context, query string, limit int) ([]SearchResult, error)
 }
