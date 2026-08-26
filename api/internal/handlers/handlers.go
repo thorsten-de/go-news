@@ -16,8 +16,8 @@ type Handlers struct {
 	articles domain.ArticleReader
 }
 
-// New creates a new Handlers instance with the given article reader.
-func New(articles domain.ArticleReader) *Handlers {
+// NewArticleHandlers creates a new Handlers instance with the given article reader.
+func NewArticleHandlers(articles domain.ArticleReader) *Handlers {
 	return &Handlers{
 		articles: articles,
 	}
@@ -27,11 +27,11 @@ func New(articles domain.ArticleReader) *Handlers {
 // We can provide the mux, so we can replace it with a test double.
 func (h *Handlers) RegisterRoutes(mux *http.ServeMux) {
 	// GET /articles - returns the recent articles
-	mux.HandleFunc("/articles", h.articlesHandler)
+	mux.HandleFunc("/articles", h.handleArticles)
 }
 
 // Request handler returning the recent articles.
-func (h *Handlers) articlesHandler(w http.ResponseWriter, r *http.Request) {
+func (h *Handlers) handleArticles(w http.ResponseWriter, r *http.Request) {
 	// handle GET requests only
 	if r.Method != http.MethodGet {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)

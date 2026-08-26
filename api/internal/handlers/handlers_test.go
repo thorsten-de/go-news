@@ -40,7 +40,7 @@ func newMockReader(count int) *mockReader {
 
 func TestArticlesHandler_DefaultCount(t *testing.T) {
 	// Prepare 15 dummy articles via helper.
-	h := handlers.New(newMockReader(15))
+	h := handlers.NewArticleHandlers(newMockReader(15))
 	mux := http.NewServeMux()
 	h.RegisterRoutes(mux)
 
@@ -65,7 +65,7 @@ func TestArticlesHandler_DefaultCount(t *testing.T) {
 }
 
 func TestArticlesHandler_CustomCount(t *testing.T) {
-	h := handlers.New(newMockReader(8))
+	h := handlers.NewArticleHandlers(newMockReader(8))
 	mux := http.NewServeMux()
 	h.RegisterRoutes(mux)
 
@@ -86,7 +86,7 @@ func TestArticlesHandler_CustomCount(t *testing.T) {
 }
 
 func TestArticlesHandler_MethodNotAllowed(t *testing.T) {
-	h := handlers.New(newMockReader(0))
+	h := handlers.NewArticleHandlers(newMockReader(0))
 	mux := http.NewServeMux()
 	h.RegisterRoutes(mux)
 

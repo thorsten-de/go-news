@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -17,18 +18,26 @@ func main() {
 	// - It also improves concurrency, as BoltDB supports multiple readers acquiring
 	//   a shared lock on the database, allowing them to read simultaneously, while
 	//   write mode requires an exclusive lock.
-	store, err := storage.NewBoltStore("../articles.db", true)
+	baseStore, err := storage.NewBoltStore("../articles.db", true)
 	if err != nil {
 		log.Fatalf("failed to initialize storage: %v", err)
 	}
-	defer store.Close()
+	defer baseStore.Close()
 
+	// Wrap the store with search capabilities
+	store, err := storage.NewSearchStoreWithDefaults(context.Background(), baseStore)
+	if err != nil {
+		log.Fatalf("failed to initialize search store: %v", err)
+	}
 	// Inject storage into handlers
-	h := handlers.New(store)
+	articleHandlers := handlers.NewArticleHandlers(store)
 
 	// Create a new HTTP router and register route handlers
 	mux := http.NewServeMux()
-	h.RegisterRoutes(mux)
+	articleHandlers.RegisterRoutes(mux)
+
+	// Add search handlers
+	handlers.NewSearchHandlers(store).RegisterRoutes(mux)
 
 	// Start the HTTP server
 	fmt.Println("Server is running on :8080")

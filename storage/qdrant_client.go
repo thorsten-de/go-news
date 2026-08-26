@@ -106,10 +106,10 @@ func (qc *QdrantClient) Search(ctx context.Context, vector []float32, limit int)
 		return nil, err
 	}
 
-	matches := make([]SearchMatch, 0, len(response.Result))
+	matches := make([]SearchMatch, len(response.Result))
 	for i, hit := range response.Result {
 		matches[i] = SearchMatch{
-			ID:    hit.Id.String(),
+			ID:    hit.Id.GetUuid(),
 			Score: hit.Score,
 		}
 	}
