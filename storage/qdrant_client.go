@@ -23,7 +23,7 @@ type QdrantClient struct {
 // Connects via gRPC port 6334 by default on localhost.
 func NewQdrantClient(ctx context.Context, address, collectionName string) (*QdrantClient, error) {
 	if address == "" {
-		address = "localhost:6334"
+		address = "localhost"
 	}
 	if collectionName == "" {
 		collectionName = "articles"

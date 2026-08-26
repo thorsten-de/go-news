@@ -3,6 +3,7 @@ package reader
 import (
 	"context"
 
+	"github.com/google/uuid"
 	"github.com/holmes89/gofeed"
 	"github.com/thorsten-de/go-news/domain"
 )
@@ -40,16 +41,22 @@ func (r *RSSReader) FetchFeed(ctx context.Context, url string) (*domain.Feed, er
 		Articles:    make([]*domain.Article, 0, len(feed.Items)),
 	}
 
+	namespace := uuid.NameSpaceURL
+
 	for _, item := range feed.Items {
+		// We generate a UUID based on the items GUID to get a unique identifier
+		// for the article. From the feeds used, the GUID is a url that uniquely identifies the
+		// article across feeds. This ensures all store implementations can use the UUID to
+		// identify the article, regardless of which feed it came from and the format of the GUID.
+		uuid := uuid.NewSHA1(namespace, []byte(item.GUID))
 		article := &domain.Article{
-			ID:          item.GUID,
+			ID:          uuid.String(),
 			Title:       item.Title,
 			Description: item.Description,
 			Link:        item.Link,
 			Published:   item.PublishedParsed,
 			FeedTitle:   feed.Title,
 		}
-
 		domainFeed.Articles = append(domainFeed.Articles, article)
 	}
 

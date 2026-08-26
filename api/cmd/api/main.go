@@ -17,7 +17,7 @@ func main() {
 	// - It also improves concurrency, as BoltDB supports multiple readers acquiring
 	//   a shared lock on the database, allowing them to read simultaneously, while
 	//   write mode requires an exclusive lock.
-	store, err := storage.NewBoltStore("./articles.db", true)
+	store, err := storage.NewBoltStore("../articles.db", true)
 	if err != nil {
 		log.Fatalf("failed to initialize storage: %v", err)
 	}

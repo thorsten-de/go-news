@@ -25,18 +25,23 @@ func main() {
 	// - Write mode requires an exclusive lock that is released immediately
 	//   after each commit. This keeps the API available for read-only
 	//   operations with minimal blocking.
-	store, err := storage.NewBoltStore("./articles.db", false)
+	baseStore, err := storage.NewBoltStore("../articles.db", false)
 	if err != nil {
 		log.Fatalf("failed to initialize store: %v", err)
 	}
-	defer store.Close()
+	defer baseStore.Close()
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	store, err := storage.NewSearchStoreWithDefaults(ctx, baseStore)
+	if err != nil {
+		log.Printf("Warning: Could not enable search: %v", err)
+		log.Println("Continue with basic storage only")
+	}
 
 	// Create an RSS reader to fetch articles from the given URLs.
 	fetcher := reader.NewRSSReader()
-
-	// Create a context with a cancel function to handle graceful shutdown
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
 
 	// Set up signal handling to gracefully shutdown the worker on
 	// SIGINT or SIGTERM:
