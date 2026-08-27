@@ -4,5 +4,6 @@ use (
 	./api
 	./domain
 	./storage
+	./summarizer
 	./worker
 )
