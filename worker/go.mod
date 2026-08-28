@@ -1,8 +1,9 @@
 module github.com/thorsten-de/go-news/worker
 
-go 1.27.0
+go 1.27
 
 require (
+	github.com/google/uuid v1.6.0
 	github.com/holmes89/gofeed v0.0.0-20260120162335-a8fea81199c9
 	github.com/thorsten-de/go-news/domain v0.0.1 // direct
 	github.com/thorsten-de/go-news/storage v0.0.1 // direct
@@ -11,7 +12,6 @@ require (
 require (
 	github.com/PuerkitoBio/goquery v1.8.0 // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
-	github.com/google/uuid v1.6.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mmcdole/goxpp v1.1.1-0.20240225020742-a0c311522b23 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect

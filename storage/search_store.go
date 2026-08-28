@@ -43,6 +43,26 @@ func NewSearchStoreWithDefaults(ctx context.Context, storage domain.Storage) (*S
 	return NewSearchStore(storage, embedder, qdrant), nil
 }
 
+func NewBoltSearcStore(path string, config Config) (*SearchStore, error) {
+	ctx := context.Background()
+	storage, err := NewBoltStore(path, true)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create bolt storage: %w", err)
+	}
+	embedder := NewOllamaEmbedder(config.OllamaURL, "")
+	qdrant, err := NewQdrantClient(ctx, config.QdrantHost, config.QdrantCollection)
+	if err != nil {
+		return nil, fmt.Errorf("failed to connect to qdrant: %w", err)
+	}
+	return NewSearchStore(storage, embedder, qdrant), nil
+}
+
+type Config struct {
+	QdrantHost       string
+	QdrantCollection string
+	OllamaURL        string
+}
+
 // AddArticles adds articles to the store, embedding them as vectors if possible.
 // It delegates to the embedded Storage implementation.
 func (s *SearchStore) AddArticles(ctx context.Context, articles []*domain.Article) error {
