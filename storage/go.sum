@@ -18,8 +18,8 @@ github.com/qdrant/go-client v1.19.0 h1:WGyC1YDXXU8/Od8+kcFncgD3eMqulAoNHy8Ip76tB
 github.com/qdrant/go-client v1.19.0/go.mod h1:/pjMgiL4SxFxD5rLorlS5/FXcvBSx/P2M81gnqn5fb8=
 github.com/stretchr/testify v1.11.1 h1:7s2iGBzp5EwR7/aIZr8ao5+dra3wiQyKjjFuvgVKu7U=
 github.com/stretchr/testify v1.11.1/go.mod h1:wZwfW3scLgRK+23gO65QZefKpKQRnfz6sD981Nm4B6U=
-github.com/thorsten-de/go-news/domain v0.0.1 h1:3oo94IYmkTs6C72HBzGKROs39/6/tmGG4k0rirhI7CI=
-github.com/thorsten-de/go-news/domain v0.0.1/go.mod h1:tmjfhBhWv+s/v6yDt0BeE5eTBNASQVQPz0oey+vUQBU=
+github.com/thorsten-de/go-news/domain v1.0.0 h1:b2DgXWuOvqRyc2eYPRa0Sc2W63lDIGL8Q5n8mHh4+gA=
+github.com/thorsten-de/go-news/domain v1.0.0/go.mod h1:LTcwCFTiJWAPMpSAGg1UWfETv8qQGH93Q5MJOmkr/0Y=
 go.etcd.io/bbolt v1.5.0 h1:S7GAl7Fxv12yohbwFfIbQCGDWbQbtDGPET4P/bD4lxU=
 go.etcd.io/bbolt v1.5.0/go.mod h1:mkltfYE5aUHQxUct9N9V+Kp7aSjFqjgrhcXIS70Lrdk=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=

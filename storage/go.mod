@@ -4,7 +4,7 @@ go 1.27.0
 
 require (
 	github.com/qdrant/go-client v1.19.0
-	github.com/thorsten-de/go-news/domain v0.0.1
+	github.com/thorsten-de/go-news/domain v1.0.0
 	go.etcd.io/bbolt v1.5.0
 )
 
